@@ -9,6 +9,10 @@ class OSCSoundSender:
         msg = OSC.OSCMessage() #  we reuse the same variable msg used above overwriting it
         msg.setAddress("/binaryVillage")
         msg.append("action:changeSound channel:>"+channelId+"<; file:>"+soundFileName+"<;")
+        #msg.append("changeSound")
+        #msg.append(channelId)
+        #msg.append(soundFileName)
+        
         for l in self.listOfListener:
             client = OSC.OSCClient()
             client.connect( (l, 9000) ) # note that the argument is a tupple and not two arguments

@@ -10,6 +10,7 @@ from ConsolInput.ConsolInputManager import ConsolInputManager
 from IpListReading.IpChooser import IpChosser
 from IpListReading.IpListReader import IpListReader
 from ChannelListener.channelPrefReader import ChannelPrefReader
+
 def start():
         prefReader=ChannelPrefReader()
         running=True
