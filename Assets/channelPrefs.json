@@ -1,5 +1,5 @@
 {
-    "channelDegrees":{
+    "channelAngle":{
         "rechtsVonUrsprung":[110,155,210],
         "linksVonUrsprung":[0,65,110],
         "gegenUeber":[65,110,155],

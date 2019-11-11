@@ -1,8 +1,8 @@
 class AudioPositionHolder:
     
-    def __init__(self,id,volDegrees):
+    def __init__(self,id,volAngle):
         self.id =id
-        self.minLeftVolDegree=volDegrees[0]
-        self.maxVolDegree=volDegrees[1]
-        self.minRightVolDegree=volDegrees[2]
+        self.minLeftVolAngle=volAngle[0]
+        self.maxVolAngle=volAngle[1]
+        self.minRightVolAngle=volAngle[2]
         

@@ -1,6 +1,6 @@
 from ChannelListener.AudioHandler import AudioHandler
 from time import sleep
-from ChannelListener.inputHandler import ArduinoInputHandler
+from ChannelListener.PotiInputReciever import PotiInputReciever
 from ChannelListener.OnObserveRotation import OnObserveRotationm
 from ChannelListener.RotaryConverter import RotaryConverter
 from OSCHandler.OSCInputHandler import OSCInputHandler
@@ -24,8 +24,8 @@ def start():
         audioHandler=AudioHandler(firstAudioFile,cInputManager,prefReader)
 
         observeRotation= OnObserveRotationm(audioHandler,converter)
-        inputHandler= ArduinoInputHandler()
-        inputHandler.addListener(observeRotation)
+        potiInputReciever= PotiInputReciever()
+        potiInputReciever.addListener(observeRotation)
 
         soundMSGHandler=SoundMessageHandler(audioHandler)
         onOSCMessage =OnOSCMessage()
@@ -41,7 +41,7 @@ def start():
 
         while running:
         
-                inputHandler.checkRotation()
+                potiInputReciever.checkRotation()
                 sleep(sleeT)
         
 

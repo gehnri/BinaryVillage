@@ -6,13 +6,13 @@ class ChannelPrefReader:
         self.filePath=filePath
 
     
-    def getDegreesOf(self,identifier):
+    def getAngleOf(self,identifier):
         with open(self.filePath) as json_file:
             data = json.load(json_file)
-            degreeObject=data["channelDegrees"]
-            degressArray=degreeObject[identifier]
-            degrees=(degressArray[0],degressArray[1],degressArray[2])
-        return degrees
+            angleObject=data["channelAngle"]
+            angleArray=angleObject[identifier]
+            angle=(angleArray[0],angleArray[1],angleArray[2])
+        return angle
     
     def getFirstAudioFile(self):
         #"firstAudioFile"

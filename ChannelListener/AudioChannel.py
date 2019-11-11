@@ -1,6 +1,6 @@
 import pygame
 from AudioPositionHolder import AudioPositionHolder
-from  DegreeToVolumeConverter import DegreeToVolumeConverter
+from  AngleToVolumeConverter import AngleToVolumeConverter
 
 class AudioChannel:
 
@@ -9,13 +9,14 @@ class AudioChannel:
         self.audioPosHolder=audioPositionHolder
         self.currentAudioFile=initAudioFile
         self.channel=pygame.mixer.Channel(audioPositionHolder.id)
-        self.degreeConverterLeft=DegreeToVolumeConverter(self.audioPosHolder.maxVolDegree,self.audioPosHolder.minLeftVolDegree)
-        self.degreeConverterRight=DegreeToVolumeConverter(self.audioPosHolder.minRightVolDegree,self.audioPosHolder.maxVolDegree)
+        self.angleConverterLeft=AngleToVolumeConverter(self.audioPosHolder.maxVolAngle,self.audioPosHolder.minLeftVolAngle)
+        self.angleConverterRight=AngleToVolumeConverter(self.audioPosHolder.minRightVolAngle,self.audioPosHolder.maxVolAngle)
         self.playAudioFile(filePrefix+self.currentAudioFile)
-        self.oldDegrees=-1
+        self.oldAngle=-1
         self.filePrefix=filePrefix
 
     def setSong(self,fileName):
+        
         if fileName!=self.currentAudioFile:
             self.currentAudioFile=self.filePrefix+fileName
             self.playAudioFile(self.currentAudioFile)
@@ -26,16 +27,16 @@ class AudioChannel:
         audioFile = pygame.mixer.Sound(fileName)
         self.channel.play(audioFile,-1)
 
-    def setVolumeBasedOnDegree(self, degrees):
-        if self.oldDegrees!=degrees:
+    def setVolumeBasedOnAngle(self, angle):
+        if self.oldAngle!=angle:
             vol=0
-            if degrees < self.audioPosHolder.maxVolDegree and degrees > self.audioPosHolder.minLeftVolDegree: 
-                vol=self.degreeConverterLeft.convertDegreesInVolume(degrees)
-            elif degrees >  self.audioPosHolder.maxVolDegree and degrees < self.audioPosHolder.minRightVolDegree:
-                volTemp=self.degreeConverterRight.convertDegreesInVolume(degrees)
+            if angle < self.audioPosHolder.maxVolAngle and angle > self.audioPosHolder.minLeftVolAngle: 
+                vol=self.angleConverterLeft.convertAngleIntoVolume(angle)
+            elif angle >  self.audioPosHolder.maxVolAngle and angle < self.audioPosHolder.minRightVolAngle:
+                volTemp=self.angleConverterRight.convertAngleIntoVolume(angle)
                 vol=1.0-volTemp
             #print "Channel: " + str(self.number) +"  VOL:"+ str(vol)
-            self.oldDegrees=degrees
+            self.oldAngle=angle
             self.channel.set_volume(vol)
         
     

@@ -1,17 +1,17 @@
 from AudioHandler import AudioHandler 
 from RotarySteppListener import RotarySteppListener
-from RotaryConverter import RotaryConverter
+from AngleConverter import AngleConverter
 class OnObserveRotationm:
 
-    def __init__(self, audioHandler,rotaryConverter):
+    def __init__(self, audioHandler,angleConverter):
         #nothing yet
         self.audioHandler =audioHandler
-        self.converter=rotaryConverter
+        self.converter=angleConverter
     def onRotate(self,val):
         #change the volume of the channels
-        deg=self.converter.convertStepInDegrees(val)
+        angle=self.converter.convertStepInAngle(val)
         #pass degrees to all channels
-        self.audioHandler.changeVolume(deg)
+        self.audioHandler.changeVolume(angle)
 
     
     

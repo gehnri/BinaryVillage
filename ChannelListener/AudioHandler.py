@@ -17,9 +17,9 @@ class AudioHandler :
 
     
         
-    def changeVolume(self, degrees):
+    def changeVolume(self, angle):
          for channeID in self.channelDict:
-            self.channelDict[channeID].setVolumeBasedOnDegree(degrees)
+            self.channelDict[channeID].setVolumeBasedOnAngle(angle)
 
     
 
@@ -40,10 +40,10 @@ class AudioHandler :
             print (channeID)
 
     def  initChannel (self, val, prefReader):
-            rechtsVonUrsprung=prefReader.getDegreesOf("rechtsVonUrsprung")#(110,155,210)
-            linksVonUrsprung=prefReader.getDegreesOf("linksVonUrsprung")#(0,65,110)
-            gegenUeber=prefReader.getDegreesOf("gegenUeber")#(65,110,155)
-            own=prefReader.getDegreesOf("own")#(45,0,45)
+            rechtsVonUrsprung=prefReader.getAngleOf("rechtsVonUrsprung")#(110,155,210)
+            linksVonUrsprung=prefReader.getAngleOf("linksVonUrsprung")#(0,65,110)
+            gegenUeber=prefReader.getAngleOf("gegenUeber")#(65,110,155)
+            own=prefReader.getAngleOf("own")#(45,0,45)
 
             if val is 0:#Main
                 self.ownId=0
