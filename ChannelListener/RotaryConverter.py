@@ -7,6 +7,7 @@ class RotaryConverter(ValueMapper,object):
         super(ValueMapper,self).__init__()
 
     def convertStepInDegrees(self, inputVal):
+        #max und min values aus der prefs datei beziehen
         convertedVal= self.mapValues(inputVal,self.inputMax,self.inputMin,210.0,0.0)
         return convertedVal
 
