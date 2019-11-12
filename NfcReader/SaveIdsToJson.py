@@ -2,8 +2,9 @@ import json
 
 class SaveIdToJson:
 
-    def __init__(self,cInputManager,filePath="Assets/loggedIds.json"):
+    def __init__(self,cInputManager,filePath="Assets/loggedIds.json", simpleListPath="Assets/loggedFilenames.json"):
         self.filePath=filePath
+        self.simpleListFilePath=simpleListPath
         self.cInputManager=cInputManager
         self.startOfValChar=">"
         self.endOfValChar="<"
@@ -15,10 +16,21 @@ class SaveIdToJson:
         cInputManager.getStringVal(self,"What soundfile is this id "+ nfcId + " \n \t Enter only filename + format (sound.wav): \n \t ")
         
     def callback(self,val):
+        self.saveToIdList(val)
+        self.saveToSimpleAudioFileList(val)
+        
+    def saveToSimpleAudioFileList(self,val):
+        print "\n Saving: " + soundFileName + " to file: "+ self.simpleListFilePath
+        with open(self.simpleListFilePath) as f:
+            data = json.load(f)
+
+        data["audioNames"].update(val)
+        with open(self.simpleListFilePath, 'w') as f:
+            json.dump(data, f)
+    
+    def saveToIdList(self,val):
         soundFileName=val
         print "\n Saving: " + soundFileName + " on id:  "+ self.nfcId + " to file: "+ self.filePath
-        import json
-
         audioIdOut  = {self.nfcId:soundFileName}
 
         with open(self.filePath) as f:
