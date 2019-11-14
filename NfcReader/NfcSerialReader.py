@@ -17,7 +17,7 @@ class NfcSerialReader:
     def prepareSerialListener (self):
         self.nfcInterfaces=[]
         for i in range(0,4):
-            prepareSingleNfcListener(i)    
+            self.prepareSingleNfcListener(i)    
 
         
     def prepareSingleNfcListener (self, num):
@@ -35,6 +35,7 @@ class NfcSerialReader:
             print(" ACM  loaded")
             self.nfcInterfaces.append(ser)
         except:
+            print num
             print(" ACM  not loaded")    
 
     def readSerialInput(self):
@@ -58,7 +59,8 @@ class NfcSerialReader:
             self.onIdDetected(msg)
 
     def startReadingLoop(self):
-        while 1:
+        self.isRunning=True
+        while self.isRunning:
             self.readSerialInput()
             time.sleep(self.timeOut)
         
@@ -68,4 +70,7 @@ class NfcSerialReader:
 
     def addIdDetectedListener(self, listener):
         self.listener.append(listener)
+    
+    def Clean(self):
+        self.isRunning=False
         

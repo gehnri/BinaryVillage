@@ -9,6 +9,7 @@ from SoundMessageDispatcher.GetIDViaSerial import GetIdViaSerial
 from NfcReader.NfcSerialReader import NfcSerialReader
 from UsbListReader.UsbListReader import UsbListReader
 from SoundMessageDispatcher.DispatcherPrefReader import DispatcherPrefReader
+from SysClean.SysCleaner import SysCleaner
 
 def start ():
     prefReader=DispatcherPrefReader()
@@ -27,7 +28,11 @@ def start ():
     usbPortList=usbListReader.getUsbList()
     nfcSerialReader=NfcSerialReader(usbPortList,prefReader.getSleepTimeOut(),prefReader.getSerialTimeOut())
     nfcSerialReader.addIdDetectedListener(getIDViaSerial)
-    nfcSerialReader.startReadingLoop()
+   
+
+    sysClean=SysCleaner()
+    sysClean.addCleanListener(nfcSerialReader)
     
+    nfcSerialReader.startReadingLoop()
 if __name__ == '__main__':
     start()

@@ -11,7 +11,8 @@ from UsbListReader.UsbListReader import UsbListReader
 from SoundMessageDispatcher.DispatcherPrefReader import DispatcherPrefReader
 from NfcReader.SaveIdsToJson import SaveIdToJson
 from ConsolInput.ConsolInputManager import ConsolInputManager
- 
+from SysClean.SysCleaner import SysCleaner
+
 def start ():
     print "Start reading NFC... \n ACHTUNG: \n \t Vergiss nicht die Anfuehrungsstriche bei der Eingabe \n\t von Sounds \n !!!!"
 
@@ -22,6 +23,10 @@ def start ():
     nfcSerialReader=NfcSerialReader(usbPortList,prefReader.getSleepTimeOut(),prefReader.getSerialTimeOut())
     idSaver=SaveIdToJson(cInputManager)
     nfcSerialReader.addIdDetectedListener(idSaver)
+
+    sysCl=SysCleaner()
+    sysCl.addCleanListener(nfcSerialReader)
+
     nfcSerialReader.startReadingLoop()
     
 if __name__ == '__main__':

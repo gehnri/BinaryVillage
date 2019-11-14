@@ -20,16 +20,22 @@ class SaveIdToJson:
         self.saveToSimpleAudioFileList(val)
         
     def saveToSimpleAudioFileList(self,val):
+        soundFileName=val
+
+        if ".wav" in soundFileName:
+            soundFileName=soundFileName.strip(".wav")
+        
         print "\n Saving: " + soundFileName + " to file: "+ self.simpleListFilePath
         with open(self.simpleListFilePath) as f:
             data = json.load(f)
 
-        data["audioNames"].update(val)
+        data["audioNames"].append(val)
         with open(self.simpleListFilePath, 'w') as f:
             json.dump(data, f)
     
     def saveToIdList(self,val):
         soundFileName=val
+        
         print "\n Saving: " + soundFileName + " on id:  "+ self.nfcId + " to file: "+ self.filePath
         audioIdOut  = {self.nfcId:soundFileName}
 
@@ -64,3 +70,5 @@ class SaveIdToJson:
                 val=msg[startInd+1:endInd]
                 return val
         return " "    
+    
+    

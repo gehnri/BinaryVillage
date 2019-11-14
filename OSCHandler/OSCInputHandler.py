@@ -1,11 +1,13 @@
 import OSC
 import threading
 import socket
-
+import signal
+import sys
 class OSCInputHandler:
 
-    def __init__(self,):
+    def __init__(self):
         self.oscListenerList=[]
+        
 
     def registerCallBackListener(self,listener):
         self.oscListenerList.append(listener)
@@ -14,12 +16,12 @@ class OSCInputHandler:
         self.adress=ipChooser.getIpAdress()
         try:
             reciverAd=self.adress, 9000
-            s = OSC.OSCServer(reciverAd)  # basic
-            s.addDefaultHandlers()
-            s.addMsgHandler("/binaryVillage", self.OnOSCMessage)  # adding our function
-            st = threading.Thread(target=s.serve_forever)
-            st.start()
-        except:
+            self.s = OSC.OSCServer(reciverAd)  # basic
+            self.s.addDefaultHandlers()
+            self.s.addMsgHandler("/binaryVillage", self.OnOSCMessage)  # adding our function
+            self.st = threading.Thread(target=self.s.serve_forever)
+            self.st.start()
+        except :
             print "OSC couldnt be initet"
             self.initServer(ipChooser)
 
@@ -29,5 +31,9 @@ class OSCInputHandler:
         actionToTake=stuff[0]
         for l in self.oscListenerList:
             l.recievedMessage(actionToTake)
+
+    def Clean(self):
+        self.s.close()
+
     
    

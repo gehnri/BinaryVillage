@@ -74,3 +74,6 @@ class AudioHandler :
     def callback(self,val):
             print "You chosse Channel: " + str(val)
             self.initChannel(val,self.prefReader)
+
+    def Clean(self):
+        pygame.quit()

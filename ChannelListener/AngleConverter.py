@@ -1,5 +1,6 @@
 from ValueMapper import ValueMapper
-class AngleConveter(ValueMapper,object):
+
+class AngleConverter(ValueMapper,object):
 
     def __init__(self, inputMax,inputMin):
         self.inputMax=inputMax
