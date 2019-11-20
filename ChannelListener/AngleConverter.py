@@ -8,7 +8,7 @@ class AngleConverter(ValueMapper,object):
         super(ValueMapper,self).__init__()
 
     def convertStepInAngle(self, inputVal):
-        #max und min values aus der prefs datei beziehen
+        #Only converts angles from 210 to 0 because of the potentiometer
         convertedVal= self.mapValues(inputVal,self.inputMax,self.inputMin,210.0,0.0)
         return convertedVal
 

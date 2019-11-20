@@ -3,7 +3,7 @@ from AngleConverter import AngleConverter
 class OnObserveRotation:
 
     def __init__(self, audioHandler,angleConverter):
-        #nothing yet
+     
         self.audioHandler =audioHandler
         self.converter=angleConverter
         

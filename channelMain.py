@@ -12,6 +12,7 @@ from IpListReading.IpChooser import IpChosser
 from IpListReading.IpListReader import IpListReader
 from ChannelListener.channelPrefReader import ChannelPrefReader
 from  ChannelListener.AngleConverter import AngleConverter
+
 def start():
 
         sysCleaner =SysCleaner()
@@ -21,7 +22,7 @@ def start():
 
         cInputManager=ConsolInputManager()
         potiTr=prefReader.getPotiTreshold()
-        converter=AngleConverter(potiTr[0],potiTr[1])
+        converter=AngleConverter(potiTr[0],potiTr[1],)
 
         firstAudioFile=prefReader.getFirstAudioFile()
         audioHandler=AudioHandler(firstAudioFile,cInputManager,prefReader)
