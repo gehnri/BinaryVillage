@@ -33,3 +33,5 @@ NFCLogger: Mit dieser können NFC Karten über Arduino eingelesen  und dann mit 
 PotiTreshReader:
 Mit dieser kann man den Potentiometer auslesen und die "rohen" Werte anzeigen.
 In der Assets/channelPrefs.json können dann die Grenzwerte eingetragen werden.
+
+TODO: Refactoring, Decouple AuidioHandler from Pygame
