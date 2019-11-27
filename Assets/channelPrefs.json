@@ -3,9 +3,9 @@
         "rechtsVonUrsprung":[110,155,210],
         "linksVonUrsprung":[0,65,110],
         "gegenUeber":[65,110,155],
-        "own":[45,0,45]
+        "own":[0,0,0]
     },
-    "firstAudioFile":"1 (1).wav",
+    "firstAudioFile":"Sperrgebiet.wav",
     "potiGrenzwerte":[26000,26],
     "sleepTime":0.01
 }

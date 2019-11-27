@@ -16,6 +16,11 @@ Am Dispatcher Raspberry sind jeweil 4 Arduinos über Seriellen Port angeschlosse
 
 Die Kommunikation erfolgt über OSC.
 
+Benötigte Libs:
+
+pygame
+Adafruit-ADS1x15
+pyOSC
 
 Zum Programm: 
 
@@ -33,5 +38,11 @@ NFCLogger: Mit dieser können NFC Karten über Arduino eingelesen  und dann mit 
 PotiTreshReader:
 Mit dieser kann man den Potentiometer auslesen und die "rohen" Werte anzeigen.
 In der Assets/channelPrefs.json können dann die Grenzwerte eingetragen werden.
+
+AudioListSpellCheck: 
+Hilft dir dabei zu ueberpruefen ob die in der AudioList.json angeegebenen Files auch wirklich im Sounds Ordner sind.
+
+CheckAudio: 
+Da pygame auch bei einigen .wav Dateiein Probeleme mit dem Abspielen hat ueberprueft man damit ob die Dateien von pygame auch wirklich abgespielt werden können.
 
 TODO: Refactoring, Decouple AuidioHandler from Pygame

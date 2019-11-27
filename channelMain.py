@@ -11,10 +11,15 @@ from ConsolInput.ConsolInputManager import ConsolInputManager
 from IpListReading.IpChooser import IpChosser
 from IpListReading.IpListReader import IpListReader
 from ChannelListener.channelPrefReader import ChannelPrefReader
-from  ChannelListener.AngleConverter import AngleConverter
+from ChannelListener.AngleConverter import AngleConverter
+from AudioListChecker.AudioListChecker import AudioListChecker
+from SoundMessageDispatcher.JSONListImporter import JSONListImporter
 
 def start():
-
+        jsonListImporter=JSONListImporter()
+        audioListCheker=AudioListChecker(jsonListImporter)
+        audioListCheker.CheckListOfAudioFiles()
+        
         sysCleaner =SysCleaner()
         prefReader=ChannelPrefReader()
         running=True
@@ -47,7 +52,7 @@ def start():
         sysCleaner.addCleanListener(oscInputHandler)
 
         while running:
-        
+                audioHandler.checkEvents()
                 potiInputReciever.checkRotation()
                 sleep(sleeT)
         

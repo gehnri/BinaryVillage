@@ -5,7 +5,9 @@ class AudioHandler :
     
     def __init__(self,firstSoundFileName,consolInputManager,prefReader):
         pygame.init()
-        pygame.mixer.init(frequency=44100, size=-16, channels=1, buffer=2**12)
+        #pygame.display.init()
+        screen = pygame.display.set_mode ( ( 320 , 240 ) )
+        pygame.mixer.init(frequency=44100, size=16, channels=1, buffer=2**12)
         self.prefReader=prefReader
         self.channelDict={}   
         self.firstSoundFileName=firstSoundFileName
@@ -28,12 +30,9 @@ class AudioHandler :
         print channeID
         print self.channelDict
         if channeID in self.channelDict:
-            print "Playing  "+ fileName + " at CH "+channeIDNum
             self.channelDict[channeID].setSong(fileName)
         elif channeID is self.ownId:
             #set ownChannelSound
-            print "Playing  "+ fileName + "on own"
-
             pass
         else:
             print "Cant find channel: "
@@ -71,6 +70,27 @@ class AudioHandler :
                 self.channelDict[1]=self.createChannel(self.firstSoundFileName,AudioPositionHolder(3,gegenUeber))
                 
             self.channelDict[self.ownId]=self.createChannel(self.firstSoundFileName,AudioPositionHolder(self.ownId,own))
+    
+    def playNoise(self,id):
+        self.channelDict[id].playNoise()
+    
+    def StopChannel(self,num):
+        self.channelDict[num].stopAll()
+
+    def checkEvents(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                print("endreq")
+            elif event.type == pygame.USEREVENT:
+                self.playNoise(0)
+            elif event.type == pygame.USEREVENT+1:
+                self.playNoise(1)
+            elif event.type == pygame.USEREVENT+2:
+                self.playNoise(2)
+            elif event.type == pygame.USEREVENT+3:
+                self.playNoise(3)
+
+
     def callback(self,val):
             print "You chosse Channel: " + str(val)
             self.initChannel(val,self.prefReader)
